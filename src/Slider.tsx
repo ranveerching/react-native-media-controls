@@ -40,8 +40,6 @@ const Slider = (props: Props) => {
     disabled,
   } = props;
   
-  console.log('-----DISABLED-----', disabled);
-
   const containerStyle = customSliderStyle?.containerStyle || {};
   const customTrackStyle = customSliderStyle?.trackStyle || {};
   const customThumbStyle = customSliderStyle?.thumbStyle || {};
