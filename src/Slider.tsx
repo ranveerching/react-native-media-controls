@@ -24,6 +24,7 @@ type Props = Pick<
 > & {
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
+  disabled: boolean;
 };
 
 const fullScreenImage = require("./assets/ic_fullscreen.png");
@@ -36,7 +37,10 @@ const Slider = (props: Props) => {
     onFullScreen,
     onPause,
     progress,
+    disabled,
   } = props;
+  
+  console.log('-----DISABLED-----', disabled);
 
   const containerStyle = customSliderStyle?.containerStyle || {};
   const customTrackStyle = customSliderStyle?.trackStyle || {};
