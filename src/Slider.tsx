@@ -24,7 +24,8 @@ type Props = Pick<
 > & {
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
-  disabled: boolean;
+  disabled: boolean;  
+  disabledColor: string;
 };
 
 const fullScreenImage = require("./assets/ic_fullscreen.png");
@@ -37,7 +38,8 @@ const Slider = (props: Props) => {
     onFullScreen,
     onPause,
     progress,
-    disabled,
+    disabled,    
+    disabledColor,
   } = props;
   
   const containerStyle = customSliderStyle?.containerStyle || {};
@@ -83,9 +85,9 @@ const Slider = (props: Props) => {
           thumbStyle={[
             styles.thumb,
             customThumbStyle,
-            { borderColor: mainColor },
+            { borderColor: disabled ? disabledColor : mainColor },
           ]}
-          minimumTrackTintColor={mainColor}
+          minimumTrackTintColor={disabled ? disabledColor : mainColor}
           disabled={disabled}
         />
       </View>
