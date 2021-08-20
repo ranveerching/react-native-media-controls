@@ -30,7 +30,6 @@ export type Props = {
   showOnStart?: boolean;
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
-  disabled: boolean;
   disabledColor: string;
 };
 
@@ -51,7 +50,6 @@ const MediaControls = (props: Props) => {
     showOnStart = true,
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
-    disabled = false,
     disabledColor = 'lightgrey',
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
@@ -173,7 +171,6 @@ const MediaControls = (props: Props) => {
               onSeeking={onSeeking}
               onPause={onPause}
               customSliderStyle={sliderStyle}
-              disabled={disabled}
               disabledColor={disabledColor}
             />
           </View>
