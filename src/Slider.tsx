@@ -24,7 +24,6 @@ type Props = Pick<
 > & {
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
-  disabled: boolean;
   disabledColor: string;
 };
 
