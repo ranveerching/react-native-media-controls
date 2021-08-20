@@ -31,6 +31,7 @@ export type Props = {
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
   disabledColor: string;
+  header: React.ReactNode;
 };
 
 const MediaControls = (props: Props) => {
@@ -51,6 +52,7 @@ const MediaControls = (props: Props) => {
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
     disabledColor = 'lightgrey',
+    header = null,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -140,6 +142,7 @@ const MediaControls = (props: Props) => {
 
   return (
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
+      {header}
       <Animated.View
         style={[styles.container, customContainerStyle, { opacity }]}
       >
