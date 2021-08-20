@@ -11,7 +11,6 @@ import { CustomSliderStyle } from "./Slider";
 import { Toolbar } from "./Toolbar";
 
 export type Props = {
-  children: React.ReactNode;
   containerStyle: ViewStyle;
   duration: number;
   fadeOutDelay?: number;
@@ -34,22 +33,11 @@ export type Props = {
 
 const MediaControls = (props: Props) => {
   const {
-    children,
-    containerStyle: customContainerStyle = {},
-    duration,
+    containerStyle: {},
     fadeOutDelay = 5000,
-    isLoading = false,
-    mainColor = "rgba(12, 83, 175, 0.9)",
-    onFullScreen,
     onReplay: onReplayCallback,
-    onSeek,
-    onSeeking,
-    playerState,
-    progress,
     showOnStart = true,
-    sliderStyle, // defaults are applied in Slider.tsx
-    toolbarStyle: customToolbarStyle = {},
-    disabledColor = 'lightgrey',
+    toolbarStyle: {},
     header,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
