@@ -31,7 +31,7 @@ export type Props = {
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
   disabledColor: string;
-  header: React.ReactNode;
+  header: () => void;
 };
 
 const MediaControls = (props: Props) => {
@@ -142,43 +142,45 @@ const MediaControls = (props: Props) => {
 
   return (
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
-      {header}
-      <Animated.View
-        style={[styles.container, customContainerStyle, { opacity }]}
-      >
-        {isVisible && (
-          <View style={[styles.container, customContainerStyle]}>
-            <View
-              style={[
-                styles.controlsRow,
-                styles.toolbarRow,
-                customToolbarStyle,
-              ]}
-            >
-              {children}
+      <View>
+        {header()}
+        <Animated.View
+          style={[styles.container, customContainerStyle, { opacity }]}
+        >
+          {isVisible && (
+            <View style={[styles.container, customContainerStyle]}>
+              <View
+                style={[
+                  styles.controlsRow,
+                  styles.toolbarRow,
+                  customToolbarStyle,
+                ]}
+              >
+                {children}
+              </View>
+              <Controls
+                onPause={onPause}
+                onReplay={onReplay}
+                isLoading={isLoading}
+                mainColor={mainColor}
+                playerState={playerState}
+              />
+              <Slider
+                progress={progress}
+                duration={duration}
+                mainColor={mainColor}
+                onFullScreen={onFullScreen}
+                playerState={playerState}
+                onSeek={onSeek}
+                onSeeking={onSeeking}
+                onPause={onPause}
+                customSliderStyle={sliderStyle}
+                disabledColor={disabledColor}
+              />
             </View>
-            <Controls
-              onPause={onPause}
-              onReplay={onReplay}
-              isLoading={isLoading}
-              mainColor={mainColor}
-              playerState={playerState}
-            />
-            <Slider
-              progress={progress}
-              duration={duration}
-              mainColor={mainColor}
-              onFullScreen={onFullScreen}
-              playerState={playerState}
-              onSeek={onSeek}
-              onSeeking={onSeeking}
-              onPause={onPause}
-              customSliderStyle={sliderStyle}
-              disabledColor={disabledColor}
-            />
-          </View>
-        )}
-      </Animated.View>
+          )}
+        </Animated.View>
+      </View>
     </TouchableWithoutFeedback>
   );
 };
