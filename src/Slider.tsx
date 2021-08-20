@@ -76,21 +76,22 @@ const Slider = (props: Props) => {
             {humanizeVideoDuration(duration)}
           </Text>
         </View>
-        <RNSlider
-          style={[styles.progressSlider]}
-          onValueChange={dragging}
-          onSlidingComplete={seekVideo}
-          maximumValue={Math.floor(duration)}
-          value={Math.floor(progress)}
-          trackStyle={[styles.track, customTrackStyle]}
-          thumbStyle={[
-            styles.thumb,
-            customThumbStyle,
-            { borderColor: isDisabled ? disabledColor : mainColor },
-          ]}
-          minimumTrackTintColor={isDisabled ? disabledColor : mainColor}
-          disabled={isDisabled}
-        />
+        {!isDisabled && (
+          <RNSlider
+            style={[styles.progressSlider]}
+            onValueChange={dragging}
+            onSlidingComplete={seekVideo}
+            maximumValue={Math.floor(duration)}
+            value={Math.floor(progress)}
+            trackStyle={[styles.track, customTrackStyle]}
+            thumbStyle={[
+              styles.thumb,
+              customThumbStyle,
+              { borderColor: isDisabled ? disabledColor : mainColor },
+            ]}
+            minimumTrackTintColor={isDisabled ? disabledColor : mainColor}
+          />
+        )}        
       </View>
       {Boolean(onFullScreen) && (
         <TouchableOpacity
