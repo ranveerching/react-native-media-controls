@@ -6,11 +6,14 @@ import {
   GestureResponderEvent,
   ViewStyle,
 } from "react-native";
+import styles from "./MediaControls.style";
 import { PLAYER_STATES } from "./constants/playerStates";
-import { CustomSliderStyle } from "./Slider";
+import { Controls } from "./Controls";
+import { Slider, CustomSliderStyle } from "./Slider";
 import { Toolbar } from "./Toolbar";
 
 export type Props = {
+  children: React.ReactNode;
   containerStyle: ViewStyle;
   duration: number;
   fadeOutDelay?: number;
@@ -33,11 +36,22 @@ export type Props = {
 
 const MediaControls = (props: Props) => {
   const {
-    containerStyle: {},
+    children,
+    containerStyle: customContainerStyle = {},
+    duration,
     fadeOutDelay = 5000,
+    isLoading = false,
+    mainColor = "rgba(12, 83, 175, 0.9)",
+    onFullScreen,
     onReplay: onReplayCallback,
+    onSeek,
+    onSeeking,
+    playerState,
+    progress,
     showOnStart = true,
-    toolbarStyle: {},
+    sliderStyle, // defaults are applied in Slider.tsx
+    toolbarStyle: customToolbarStyle = {},
+    disabledColor = 'lightgrey',
     header,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
@@ -130,6 +144,45 @@ const MediaControls = (props: Props) => {
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
       <View style={{flex: 1, backgroundColor: 'red'}}>
         {header()}
+        {(() => {
+          return null;
+        })()}
+        <Animated.View
+          style={[styles.container, customContainerStyle, { opacity }]}
+        >
+          {isVisible && (
+            <View style={[styles.container, customContainerStyle]}>
+              <View
+                style={[
+                  styles.controlsRow,
+                  styles.toolbarRow,
+                  customToolbarStyle,
+                ]}
+              >
+                {children}
+              </View>
+              <Controls
+                onPause={onPause}
+                onReplay={onReplay}
+                isLoading={isLoading}
+                mainColor={mainColor}
+                playerState={playerState}
+              />
+              <Slider
+                progress={progress}
+                duration={duration}
+                mainColor={mainColor}
+                onFullScreen={onFullScreen}
+                playerState={playerState}
+                onSeek={onSeek}
+                onSeeking={onSeeking}
+                onPause={onPause}
+                customSliderStyle={sliderStyle}
+                disabledColor={disabledColor}
+              />
+            </View>
+          )}
+        </Animated.View>
       </View>
     </TouchableWithoutFeedback>
   );
