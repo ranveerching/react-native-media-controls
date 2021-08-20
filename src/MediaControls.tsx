@@ -6,10 +6,8 @@ import {
   GestureResponderEvent,
   ViewStyle,
 } from "react-native";
-import styles from "./MediaControls.style";
 import { PLAYER_STATES } from "./constants/playerStates";
-import { Controls } from "./Controls";
-import { Slider, CustomSliderStyle } from "./Slider";
+import { CustomSliderStyle } from "./Slider";
 import { Toolbar } from "./Toolbar";
 
 export type Props = {
@@ -143,7 +141,7 @@ const MediaControls = (props: Props) => {
   return (
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
       <View style={{flex: 1, backgroundColor: 'red'}}>
-        {header()}        
+        {header()}
       </View>
     </TouchableWithoutFeedback>
   );
