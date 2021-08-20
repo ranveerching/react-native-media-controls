@@ -24,7 +24,7 @@ type Props = Pick<
 > & {
   onPause: () => void;
   customSliderStyle?: CustomSliderStyle;
-  disabled: boolean;  
+  disabled: boolean;
   disabledColor: string;
 };
 
@@ -38,10 +38,12 @@ const Slider = (props: Props) => {
     onFullScreen,
     onPause,
     progress,
-    disabled,    
     disabledColor,
+    playerState,
   } = props;
-  
+
+  const isDisabled = playerState === PLAYER_STATES.ENDED;
+
   const containerStyle = customSliderStyle?.containerStyle || {};
   const customTrackStyle = customSliderStyle?.trackStyle || {};
   const customThumbStyle = customSliderStyle?.thumbStyle || {};
@@ -85,10 +87,10 @@ const Slider = (props: Props) => {
           thumbStyle={[
             styles.thumb,
             customThumbStyle,
-            { borderColor: disabled ? disabledColor : mainColor },
+            { borderColor: isDisabled ? disabledColor : mainColor },
           ]}
-          minimumTrackTintColor={disabled ? disabledColor : mainColor}
-          disabled={disabled}
+          minimumTrackTintColor={isDisabled ? disabledColor : mainColor}
+          disabled={isDisabled}
         />
       </View>
       {Boolean(onFullScreen) && (
