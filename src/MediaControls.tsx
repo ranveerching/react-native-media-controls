@@ -52,7 +52,7 @@ const MediaControls = (props: Props) => {
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
     disabledColor = 'lightgrey',
-    header = null,
+    header,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
