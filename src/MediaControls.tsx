@@ -31,7 +31,6 @@ export type Props = {
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
   disabledColor: string;
-  header: () => void;
 };
 
 const MediaControls = (props: Props) => {
@@ -52,7 +51,6 @@ const MediaControls = (props: Props) => {
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
     disabledColor = 'lightgrey',
-    header,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -142,48 +140,42 @@ const MediaControls = (props: Props) => {
 
   return (
     <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
-      <View style={{flex: 1, backgroundColor: 'red'}}>
-        {header()}
-        {(() => {
-          return null;
-        })()}
-        <Animated.View
-          style={[styles.container, customContainerStyle, { opacity }]}
-        >
-          {isVisible && (
-            <View style={[styles.container, customContainerStyle]}>
-              <View
-                style={[
-                  styles.controlsRow,
-                  styles.toolbarRow,
-                  customToolbarStyle,
-                ]}
-              >
-                {children}
-              </View>
-              <Controls
-                onPause={onPause}
-                onReplay={onReplay}
-                isLoading={isLoading}
-                mainColor={mainColor}
-                playerState={playerState}
-              />
-              <Slider
-                progress={progress}
-                duration={duration}
-                mainColor={mainColor}
-                onFullScreen={onFullScreen}
-                playerState={playerState}
-                onSeek={onSeek}
-                onSeeking={onSeeking}
-                onPause={onPause}
-                customSliderStyle={sliderStyle}
-                disabledColor={disabledColor}
-              />
+      <Animated.View
+        style={[styles.container, customContainerStyle, { opacity }]}
+      >
+        {isVisible && (
+          <View style={[styles.container, customContainerStyle]}>
+            <View
+              style={[
+                styles.controlsRow,
+                styles.toolbarRow,
+                customToolbarStyle,
+              ]}
+            >
+              {children}
             </View>
-          )}
-        </Animated.View>
-      </View>
+            <Controls
+              onPause={onPause}
+              onReplay={onReplay}
+              isLoading={isLoading}
+              mainColor={mainColor}
+              playerState={playerState}
+            />
+            <Slider
+              progress={progress}
+              duration={duration}
+              mainColor={mainColor}
+              onFullScreen={onFullScreen}
+              playerState={playerState}
+              onSeek={onSeek}
+              onSeeking={onSeeking}
+              onPause={onPause}
+              customSliderStyle={sliderStyle}
+              disabledColor={disabledColor}
+            />
+          </View>
+        )}
+      </Animated.View>
     </TouchableWithoutFeedback>
   );
 };
