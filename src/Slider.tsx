@@ -97,6 +97,7 @@ const Slider = (props: Props) => {
               </>
             );
           }
+          return null;
         })()}  
       </View>
       {Boolean(onFullScreen) && (
