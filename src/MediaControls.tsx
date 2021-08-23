@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Animated,
-  TouchableOpacity,
+  TouchableWithoutFeedback,
   GestureResponderEvent,
   ViewStyle,
 } from "react-native";
