@@ -141,46 +141,46 @@ const MediaControls = (props: Props) => {
   };
 
   return (
-    <TouchableOpacity activeOpacity={1} onPress={toggleControls} style={styles.button}>
-      <View>
-        </View>
-      <Animated.View
-        style={[styles.container, customContainerStyle, { opacity }]}
-      >
-        {isVisible && (
-          <View style={[styles.container, customContainerStyle]}>
-            <View
-              style={[
-                styles.controlsRow,
-                styles.toolbarRow,
-                customToolbarStyle,
-              ]}
-            >
-              {children}
+    <View style={styles.button}>
+      <TouchableOpacity activeOpacity={1} onPress={toggleControls}>
+        <Animated.View
+          style={[styles.container, customContainerStyle, { opacity }]}
+        >
+          {isVisible && (
+            <View style={[styles.container, customContainerStyle]}>
+              <View
+                style={[
+                  styles.controlsRow,
+                  styles.toolbarRow,
+                  customToolbarStyle,
+                ]}
+              >
+                {children}
+              </View>
+              <Controls
+                onPause={onPause}
+                onReplay={onReplay}
+                isLoading={isLoading}
+                mainColor={mainColor}
+                playerState={playerState}
+              />
+              <Slider
+                progress={progress}
+                duration={duration}
+                mainColor={mainColor}
+                onFullScreen={onFullScreen}
+                playerState={playerState}
+                onSeek={onSeek}
+                onSeeking={onSeeking}
+                onPause={onPause}
+                customSliderStyle={sliderStyle}
+                disabledColor={disabledColor}
+              />
             </View>
-            <Controls
-              onPause={onPause}
-              onReplay={onReplay}
-              isLoading={isLoading}
-              mainColor={mainColor}
-              playerState={playerState}
-            />
-            <Slider
-              progress={progress}
-              duration={duration}
-              mainColor={mainColor}
-              onFullScreen={onFullScreen}
-              playerState={playerState}
-              onSeek={onSeek}
-              onSeeking={onSeeking}
-              onPause={onPause}
-              customSliderStyle={sliderStyle}
-              disabledColor={disabledColor}
-            />
-          </View>
-        )}
-      </Animated.View>
-    </TouchableOpacity>
+          )}
+        </Animated.View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
