@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   View,
   Animated,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   GestureResponderEvent,
   ViewStyle,
 } from "react-native";
@@ -31,6 +31,7 @@ export type Props = {
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
   disabledColor: string;
+header: () => React.ReactNode;
 };
 
 const MediaControls = (props: Props) => {
@@ -51,6 +52,7 @@ const MediaControls = (props: Props) => {
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
     disabledColor = 'lightgrey',
+    header,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -139,7 +141,8 @@ const MediaControls = (props: Props) => {
   };
 
   return (
-    <TouchableWithoutFeedback accessible={false} onPress={toggleControls}>
+    <TouchableOpacity activeOpacity={1} onPress={toggleControls}>
+      {header()}
       <Animated.View
         style={[styles.container, customContainerStyle, { opacity }]}
       >
@@ -176,7 +179,7 @@ const MediaControls = (props: Props) => {
           </View>
         )}
       </Animated.View>
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   );
 };
 
