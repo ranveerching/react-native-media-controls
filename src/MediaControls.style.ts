@@ -5,6 +5,10 @@ const playButtonBorderColor = "rgba(255,255,255,0.5)";
 const white = "#fff";
 
 export default StyleSheet.create({
+  button: {
+    flex: 1,
+    backgroundColor: 'lightgreen',
+  },
   container: {
     alignItems: "center",
     backgroundColor: containerBackgroundColor,
