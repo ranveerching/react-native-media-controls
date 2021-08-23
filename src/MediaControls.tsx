@@ -31,7 +31,7 @@ export type Props = {
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
   disabledColor: string;
-header: () => React.ReactNode;
+// header: () => React.ReactNode;
 };
 
 const MediaControls = (props: Props) => {
@@ -52,7 +52,7 @@ const MediaControls = (props: Props) => {
     sliderStyle, // defaults are applied in Slider.tsx
     toolbarStyle: customToolbarStyle = {},
     disabledColor = 'lightgrey',
-    header,
+//     header,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
