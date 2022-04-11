@@ -141,7 +141,7 @@ const MediaControls = (props: Props) => {
   };
 
   return (
-    <TouchableOpacity activeOpacity={1} onPress={toggleControls}>
+    <TouchableOpacity activeOpacity={1}>
       <Animated.View
         style={[styles.container, customContainerStyle, { opacity }]}
       >
