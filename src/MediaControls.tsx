@@ -131,17 +131,15 @@ const MediaControls = (props: Props) => {
     return onPaused(newPlayerState);
   };
 
-//   const toggleControls = () => {
-//     // value is the last value of the animation when stop animation was called.
-//     // As this is an opacity effect, I (Charlie) used the value (0 or 1) as a boolean
-//     opacity.stopAnimation((value: number) => {
-//       setIsVisible(!!value);
-//       return value ? fadeOutControls() : fadeInControls();
-//     });
-//   };
+  const toggleControls = () => {
+    opacity.stopAnimation((value: number) => {
+      setIsVisible(!!value);
+      return value ? fadeOutControls() : fadeInControls();
+    });
+  };
 
   return (
-    <TouchableOpacity activeOpacity={1}>
+    <TouchableOpacity activeOpacity={1} onPress={() => toggleControls()}>
       <Animated.View
         style={[styles.container, customContainerStyle, { opacity }]}
       >
