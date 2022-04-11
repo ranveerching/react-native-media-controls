@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactChildren } from "react";
 import {
   View,
   Animated,
@@ -13,7 +13,7 @@ import { Slider, CustomSliderStyle } from "./Slider";
 import { Toolbar } from "./Toolbar";
 
 export type Props = {
-  children: React.ReactNode;
+  children: ReactChildren;
   containerStyle: ViewStyle;
   duration: number;
   fadeOutDelay?: number;
